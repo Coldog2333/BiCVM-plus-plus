@@ -1,0 +1,6 @@
+2019.03.28 19:04
+joint-train		79.248%
+pre-train		78.440%
+
+2019.03.28 22:00
+freeze pre-train	54.24%
