@@ -9,12 +9,15 @@ from load_data import MemoryFriendlyLoader, CorpusLoader
 torch.cuda.set_device(1)
 plt.switch_backend('agg')
 
-corpus1_file = '../data/training-parallel/full/europarl-full.de-en.en'
-corpus2_file = '../data/training-parallel/full/europarl-full.de-en.de'
+corpus1_file = '../data/training-parallel/part/europarl-part.de-en.en'
+corpus2_file = '../data/training-parallel/part/europarl-part.de-en.de'
+# corpus1_file = '../data/training-parallel/tiny/europarl-tiny.de-en.en'
+# corpus2_file = '../data/training-parallel/tiny/europarl-tiny.de-en.de'
+word2vec_en = '../word2vec/en/en.bin'
 
 # --------------------------------------------------------------
 # Hyper Parameters
-EPOCH = 25
+EPOCH = 20
 WEIGHT_DECAY = 1 * 1e-5
 BATCH_SIZE = 1
 LR = 1e-4
@@ -23,10 +26,11 @@ LR_strategy = []
 use_checkpoint = False
 checkpoint_path = './checkpoints/checkpoint_0epoch.ckpt'
 Training_pic_path = 'Training_result.jpg'
-model_name = 'full_MultiCVM'
+model_name = 'full_MultiCVM_delete'
 model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader(corpus1=corpus1_file, corpus2=corpus2_file)      # 如果内存允许
+Dataset = CorpusLoader(corpus1=corpus1_file, corpus2=corpus2_file, num_of_noise=10)      # 如果内存允许
+# Dataset = MemoryFriendlyLoader(corpus1=corpus1_file, corpus2=corpus2_file)
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------

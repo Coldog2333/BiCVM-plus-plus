@@ -10,7 +10,7 @@ embedding_dim = 900
 
 
 class MemoryFriendlyLoader(torch.utils.data.Dataset):
-    def __init__(self, corpus1, corpus2, word2vec1='../word2vec/en/en.bin', word2vec2='../word2vec/de/de.bin'):
+    def __init__(self, corpus1, corpus2, word2vec1='../word2vec/en/en.bin', word2vec2='../word2vec/de/de.bin', num_of_noise=3):
         self.sentences1 = self.load_sentences(corpus1)
         self.sentences2 = self.load_sentences(corpus2)
 
@@ -19,6 +19,8 @@ class MemoryFriendlyLoader(torch.utils.data.Dataset):
 
         self.oov_embedding_dict1 = dict()   # out-of-vocabulary词的词向量
         self.oov_embedding_dict2 = dict()   # out-of-vocabulary词的词向量
+
+        self.num_of_noise = num_of_noise
 
     def load_sentences(self, corpus):
         sentences = []
@@ -62,7 +64,7 @@ class MemoryFriendlyLoader(torch.utils.data.Dataset):
         input2 = self.sentence2matrix(self.sentences2[index], lang=2, embed='word2vec')
 
         disturb_input = []
-        for i in range(3):
+        for i in range(self.num_of_noise):
             r = random.randint(0, self.__len__() - 1)
             disturb_input.append(self.sentence2matrix(self.sentences2[r], lang=2, embed='word2vec'))
 
@@ -73,7 +75,7 @@ class MemoryFriendlyLoader(torch.utils.data.Dataset):
 
 
 class CorpusLoader(torch.utils.data.Dataset):
-    def __init__(self, corpus1, corpus2, word2vec1='../word2vec/en/en.bin', word2vec2='../word2vec/de/de.bin'):
+    def __init__(self, corpus1, corpus2, word2vec1='../word2vec/en/en.bin', word2vec2='../word2vec/de/de.bin', num_of_noise=3):
         self.sentences1 = self.load_sentences(corpus1)
         self.sentences2 = self.load_sentences(corpus2)
 
@@ -86,7 +88,9 @@ class CorpusLoader(torch.utils.data.Dataset):
         print('Initializing sentence matrices...')
         self.matrix1 = self.initial_matrix(lang=1, embed='word2vec')
         self.matrix2 = self.initial_matrix(lang=2, embed='word2vec')
-        print('Matrices are ready.')
+        print('Matrices are ready. Sample size = %d' % len(self.sentences1))
+
+        self.num_of_noise = num_of_noise
 
     def load_sentences(self, corpus):
         sentences = []
@@ -135,23 +139,12 @@ class CorpusLoader(torch.utils.data.Dataset):
                       (index / self.__len__() * 100, psutil.virtual_memory().percent, psutil.cpu_percent(1)))
         return matrix
 
-    def out__getitem__(self, index):
-        input1 = self.sentence2matrix(self.sentences1[index], lang=1, embed='word2vec')
-        input2 = self.sentence2matrix(self.sentences2[index], lang=2, embed='word2vec')
-
-        disturb_input = []
-        for i in range(3):
-            r = random.randint(0, self.__len__() - 1)
-            disturb_input.append(self.sentence2matrix(self.sentences2[r], lang=2, embed='word2vec'))
-
-        return input1, input2, disturb_input
-
     def __getitem__(self, index):
         input1 = self.matrix1[index]
         input2 = self.matrix2[index]
 
         disturb_input = []
-        for i in range(3):
+        for i in range(self.num_of_noise):
             r = random.randint(0, self.__len__() - 1)
             disturb_input.append(self.matrix2[r])
 
@@ -226,7 +219,7 @@ class CorpusLoader4SA(torch.utils.data.Dataset):
 
         print('Initializing sentence matrices...')
         self.matrix = self.initial_matrix()
-        print('Matrices are ready.')
+        print('Matrices are ready. Sample size = %d' % len(self.sentences))
 
     def word2vec_embedding(self, word):
         try:
@@ -251,16 +244,6 @@ class CorpusLoader4SA(torch.utils.data.Dataset):
                 print('Processed %0.2f%% triples.\tMemory used %0.2f%%.\tCpu used %0.2f%%.' %
                       (index / self.__len__() * 100, psutil.virtual_memory().percent, psutil.cpu_percent(1)))
         return matrix
-
-    def out__getitem__(self, index):
-        input1 = self.sentence2matrix(self.sentences[index])
-
-        if index < self.pos_no:
-            ground_truth = torch.FloatTensor([1, 0])
-        else:
-            ground_truth = torch.FloatTensor([0, 1])
-
-        return input1, ground_truth
 
     def __getitem__(self, index):
         input1 = self.matrix[index]

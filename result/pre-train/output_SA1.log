@@ -1,0 +1,669 @@
+nohup: ignoring input
+2019/3/30 10:02:30  Start training...
+2019/3/30 10:02:48  Processed 4.00% triples.	Memory used 4.60%.	Cpu used 4.90%.
+2019/3/30 10:03:07  Processed 8.00% triples.	Memory used 4.60%.	Cpu used 5.90%.
+2019/3/30 10:03:26  Processed 12.00% triples.	Memory used 4.60%.	Cpu used 5.00%.
+2019/3/30 10:03:46  Processed 16.00% triples.	Memory used 4.60%.	Cpu used 5.70%.
+2019/3/30 10:04:06  Processed 20.00% triples.	Memory used 4.60%.	Cpu used 5.60%.
+2019/3/30 10:04:26  Processed 24.00% triples.	Memory used 4.60%.	Cpu used 5.20%.
+2019/3/30 10:04:45  Processed 28.00% triples.	Memory used 4.70%.	Cpu used 5.30%.
+2019/3/30 10:05:05  Processed 32.00% triples.	Memory used 4.70%.	Cpu used 6.00%.
+2019/3/30 10:05:25  Processed 36.00% triples.	Memory used 4.70%.	Cpu used 5.30%.
+2019/3/30 10:05:44  Processed 40.00% triples.	Memory used 4.70%.	Cpu used 5.00%.
+2019/3/30 10:06:03  Processed 44.00% triples.	Memory used 4.70%.	Cpu used 5.50%.
+2019/3/30 10:06:23  Processed 48.00% triples.	Memory used 4.70%.	Cpu used 5.70%.
+2019/3/30 10:06:43  Processed 52.00% triples.	Memory used 4.70%.	Cpu used 5.90%.
+2019/3/30 10:07:03  Processed 56.00% triples.	Memory used 4.70%.	Cpu used 5.80%.
+2019/3/30 10:07:24  Processed 60.00% triples.	Memory used 4.70%.	Cpu used 4.30%.
+2019/3/30 10:07:44  Processed 64.00% triples.	Memory used 4.70%.	Cpu used 6.00%.
+2019/3/30 10:08:03  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:08:23  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:08:43  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:09:03  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:09:23  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:09:42  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:10:01  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 4.90%.
+2019/3/30 10:10:21  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:10:41  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+[0.757822, 0.242178]
+
+2019/3/30 10:10:42  epoch 1: Average_loss=0.209021
+
+
+2019/3/30 10:10:42 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:11:00  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 6.90%.
+2019/3/30 10:11:18  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 5.20%.
+2019/3/30 10:11:37  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 5.80%.
+2019/3/30 10:11:55  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 5.40%.
+2019/3/30 10:12:15  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 5.80%.
+2019/3/30 10:12:35  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 5.90%.
+2019/3/30 10:12:55  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 5.10%.
+2019/3/30 10:13:14  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:13:33  Processed 36.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:13:52  Processed 40.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+2019/3/30 10:14:12  Processed 44.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:14:31  Processed 48.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:14:50  Processed 52.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:15:09  Processed 56.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:15:28  Processed 60.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:15:46  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:16:04  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:16:26  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.00%.
+2019/3/30 10:16:46  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:17:05  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:17:26  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:17:47  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:18:08  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:18:28  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:18:49  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+[0.890937, 0.109063]
+
+2019/3/30 10:18:50  epoch 2: Average_loss=0.169912
+
+
+2019/3/30 10:18:50 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:19:08  Processed 4.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:19:28  Processed 8.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:19:48  Processed 12.00% triples.	Memory used 4.80%.	Cpu used 4.30%.
+2019/3/30 10:20:07  Processed 16.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:20:27  Processed 20.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:20:46  Processed 24.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:21:05  Processed 28.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:21:26  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:21:48  Processed 36.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:22:09  Processed 40.00% triples.	Memory used 4.80%.	Cpu used 4.90%.
+2019/3/30 10:22:28  Processed 44.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:22:47  Processed 48.00% triples.	Memory used 4.80%.	Cpu used 6.30%.
+2019/3/30 10:23:06  Processed 52.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:23:25  Processed 56.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:23:45  Processed 60.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:24:04  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:24:25  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:24:45  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:25:05  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 4.80%.
+2019/3/30 10:25:23  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:25:45  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:26:05  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:26:24  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:26:43  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:27:02  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 6.10%.
+[0.893131, 0.106869]
+
+2019/3/30 10:27:03  epoch 3: Average_loss=0.155476
+
+
+2019/3/30 10:27:03 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:27:21  Processed 4.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+2019/3/30 10:27:39  Processed 8.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:27:58  Processed 12.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+2019/3/30 10:28:17  Processed 16.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:28:35  Processed 20.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:28:55  Processed 24.00% triples.	Memory used 4.80%.	Cpu used 6.20%.
+2019/3/30 10:29:14  Processed 28.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:29:34  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:29:53  Processed 36.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:30:13  Processed 40.00% triples.	Memory used 4.80%.	Cpu used 4.90%.
+2019/3/30 10:30:33  Processed 44.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:30:52  Processed 48.00% triples.	Memory used 4.80%.	Cpu used 4.90%.
+2019/3/30 10:31:12  Processed 52.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:31:32  Processed 56.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:31:50  Processed 60.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:32:11  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 6.10%.
+2019/3/30 10:32:31  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:32:50  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:33:10  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:33:29  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+2019/3/30 10:33:47  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:34:06  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 5.20%.
+2019/3/30 10:34:26  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:34:45  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 5.00%.
+2019/3/30 10:35:05  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+[0.275962, 0.724038]
+
+2019/3/30 10:35:06  epoch 4: Average_loss=0.146846
+
+
+2019/3/30 10:35:06 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:35:26  Processed 4.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:35:45  Processed 8.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:36:03  Processed 12.00% triples.	Memory used 4.80%.	Cpu used 4.80%.
+2019/3/30 10:36:23  Processed 16.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:36:42  Processed 20.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:37:00  Processed 24.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:37:21  Processed 28.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:37:40  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:37:59  Processed 36.00% triples.	Memory used 4.80%.	Cpu used 6.30%.
+2019/3/30 10:38:18  Processed 40.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:38:37  Processed 44.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:38:55  Processed 48.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:39:14  Processed 52.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:39:33  Processed 56.00% triples.	Memory used 4.80%.	Cpu used 6.10%.
+2019/3/30 10:39:52  Processed 60.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:40:10  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:40:30  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:40:49  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:41:07  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:41:26  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:41:44  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.40%.
+2019/3/30 10:42:03  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:42:21  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 6.00%.
+2019/3/30 10:42:39  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:42:58  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 4.80%.
+[0.492123, 0.507877]
+
+2019/3/30 10:42:59  epoch 5: Average_loss=0.139870
+
+
+2019/3/30 10:42:59 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:43:16  Processed 4.00% triples.	Memory used 4.80%.	Cpu used 6.20%.
+2019/3/30 10:43:35  Processed 8.00% triples.	Memory used 4.80%.	Cpu used 5.00%.
+2019/3/30 10:43:54  Processed 12.00% triples.	Memory used 4.80%.	Cpu used 5.50%.
+2019/3/30 10:44:13  Processed 16.00% triples.	Memory used 4.80%.	Cpu used 5.00%.
+2019/3/30 10:44:32  Processed 20.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:44:51  Processed 24.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:45:10  Processed 28.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:45:29  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 5.30%.
+2019/3/30 10:45:47  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 5.20%.
+2019/3/30 10:46:06  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 5.00%.
+2019/3/30 10:46:25  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 5.40%.
+2019/3/30 10:46:43  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 5.50%.
+2019/3/30 10:47:03  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 5.50%.
+2019/3/30 10:47:21  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 5.40%.
+2019/3/30 10:47:40  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 5.50%.
+2019/3/30 10:48:01  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 5.60%.
+2019/3/30 10:48:20  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 5.70%.
+2019/3/30 10:48:39  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 5.10%.
+2019/3/30 10:48:59  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:49:17  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 5.80%.
+2019/3/30 10:49:36  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 5.90%.
+2019/3/30 10:49:56  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 8.90%.
+2019/3/30 10:50:18  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 8.10%.
+2019/3/30 10:50:38  Processed 96.00% triples.	Memory used 5.40%.	Cpu used 12.00%.
+2019/3/30 10:50:58  Processed 100.00% triples.	Memory used 6.20%.	Cpu used 12.00%.
+[0.521966, 0.478034]
+
+2019/3/30 10:50:59  epoch 6: Average_loss=0.133801
+
+
+2019/3/30 10:50:59 Saving the best model temporarily...
+Saved.
+
+2019/3/30 10:51:19  Processed 4.00% triples.	Memory used 7.20%.	Cpu used 9.90%.
+2019/3/30 10:51:39  Processed 8.00% triples.	Memory used 8.10%.	Cpu used 9.20%.
+2019/3/30 10:51:59  Processed 12.00% triples.	Memory used 8.90%.	Cpu used 10.90%.
+2019/3/30 10:52:19  Processed 16.00% triples.	Memory used 10.50%.	Cpu used 11.60%.
+2019/3/30 10:52:40  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 10:53:02  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 10:53:24  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 10:53:46  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 10:54:06  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 10:54:27  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 10:54:48  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 10:55:07  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 10:55:28  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 10:55:48  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 10:56:10  Processed 60.00% triples.	Memory used 4.80%.	Cpu used 9.20%.
+2019/3/30 10:56:31  Processed 64.00% triples.	Memory used 4.80%.	Cpu used 8.10%.
+2019/3/30 10:56:53  Processed 68.00% triples.	Memory used 4.80%.	Cpu used 9.00%.
+2019/3/30 10:57:16  Processed 72.00% triples.	Memory used 4.80%.	Cpu used 9.10%.
+2019/3/30 10:57:38  Processed 76.00% triples.	Memory used 4.80%.	Cpu used 8.10%.
+2019/3/30 10:57:58  Processed 80.00% triples.	Memory used 4.80%.	Cpu used 9.50%.
+2019/3/30 10:58:19  Processed 84.00% triples.	Memory used 4.80%.	Cpu used 8.80%.
+2019/3/30 10:58:40  Processed 88.00% triples.	Memory used 4.80%.	Cpu used 8.70%.
+2019/3/30 10:59:00  Processed 92.00% triples.	Memory used 4.80%.	Cpu used 9.50%.
+2019/3/30 10:59:21  Processed 96.00% triples.	Memory used 4.80%.	Cpu used 9.20%.
+2019/3/30 10:59:44  Processed 100.00% triples.	Memory used 4.80%.	Cpu used 9.60%.
+[0.259961, 0.740039]
+
+2019/3/30 10:59:45  epoch 7: Average_loss=0.127770
+
+
+2019/3/30 10:59:45 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:00:06  Processed 4.00% triples.	Memory used 4.80%.	Cpu used 9.40%.
+2019/3/30 11:00:28  Processed 8.00% triples.	Memory used 4.80%.	Cpu used 8.70%.
+2019/3/30 11:00:51  Processed 12.00% triples.	Memory used 4.80%.	Cpu used 8.20%.
+2019/3/30 11:01:13  Processed 16.00% triples.	Memory used 4.80%.	Cpu used 9.50%.
+2019/3/30 11:01:35  Processed 20.00% triples.	Memory used 4.80%.	Cpu used 9.20%.
+2019/3/30 11:01:57  Processed 24.00% triples.	Memory used 4.80%.	Cpu used 9.10%.
+2019/3/30 11:02:18  Processed 28.00% triples.	Memory used 4.80%.	Cpu used 9.10%.
+2019/3/30 11:02:39  Processed 32.00% triples.	Memory used 4.80%.	Cpu used 8.60%.
+2019/3/30 11:03:01  Processed 36.00% triples.	Memory used 4.80%.	Cpu used 8.80%.
+2019/3/30 11:03:22  Processed 40.00% triples.	Memory used 4.80%.	Cpu used 8.70%.
+2019/3/30 11:03:45  Processed 44.00% triples.	Memory used 4.80%.	Cpu used 8.60%.
+2019/3/30 11:04:07  Processed 48.00% triples.	Memory used 4.80%.	Cpu used 8.80%.
+2019/3/30 11:04:30  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:04:51  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:05:13  Processed 60.00% triples.	Memory used 6.70%.	Cpu used 11.40%.
+2019/3/30 11:05:42  Processed 64.00% triples.	Memory used 6.70%.	Cpu used 11.40%.
+2019/3/30 11:06:10  Processed 68.00% triples.	Memory used 6.80%.	Cpu used 11.80%.
+2019/3/30 11:06:38  Processed 72.00% triples.	Memory used 6.80%.	Cpu used 11.50%.
+2019/3/30 11:07:07  Processed 76.00% triples.	Memory used 6.80%.	Cpu used 11.70%.
+2019/3/30 11:07:36  Processed 80.00% triples.	Memory used 6.80%.	Cpu used 11.60%.
+2019/3/30 11:08:04  Processed 84.00% triples.	Memory used 6.80%.	Cpu used 11.60%.
+2019/3/30 11:08:33  Processed 88.00% triples.	Memory used 6.90%.	Cpu used 11.90%.
+2019/3/30 11:09:01  Processed 92.00% triples.	Memory used 6.90%.	Cpu used 11.70%.
+2019/3/30 11:09:28  Processed 96.00% triples.	Memory used 6.90%.	Cpu used 12.00%.
+2019/3/30 11:09:56  Processed 100.00% triples.	Memory used 6.90%.	Cpu used 11.60%.
+[0.566939, 0.433061]
+
+2019/3/30 11:09:57  epoch 8: Average_loss=0.124028
+
+
+2019/3/30 11:09:57 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:10:25  Processed 4.00% triples.	Memory used 6.90%.	Cpu used 12.20%.
+2019/3/30 11:10:53  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:11:14  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 9.70%.
+2019/3/30 11:11:35  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:11:56  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:12:18  Processed 24.00% triples.	Memory used 5.10%.	Cpu used 12.60%.
+2019/3/30 11:12:38  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:12:59  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 9.70%.
+2019/3/30 11:13:21  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:13:43  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:14:04  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:14:24  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 11:14:42  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:15:01  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:15:22  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:15:42  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:16:02  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:16:22  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:16:41  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:17:02  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:17:24  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 11:17:47  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:18:09  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 11:18:28  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:18:50  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+[0.045951, 0.954049]
+
+2019/3/30 11:18:51  epoch 9: Average_loss=0.119238
+
+
+2019/3/30 11:18:51 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:19:11  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:19:34  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 9.70%.
+2019/3/30 11:19:55  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:20:16  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:20:39  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:21:02  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:21:25  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:21:46  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:22:08  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:22:31  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:22:52  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:23:12  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:23:35  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:23:58  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:24:19  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:24:43  Processed 64.00% triples.	Memory used 6.70%.	Cpu used 12.40%.
+2019/3/30 11:25:12  Processed 68.00% triples.	Memory used 6.70%.	Cpu used 11.90%.
+2019/3/30 11:25:41  Processed 72.00% triples.	Memory used 6.80%.	Cpu used 11.90%.
+2019/3/30 11:26:10  Processed 76.00% triples.	Memory used 6.80%.	Cpu used 12.00%.
+2019/3/30 11:26:39  Processed 80.00% triples.	Memory used 6.80%.	Cpu used 12.30%.
+2019/3/30 11:27:08  Processed 84.00% triples.	Memory used 6.80%.	Cpu used 11.80%.
+2019/3/30 11:27:37  Processed 88.00% triples.	Memory used 6.90%.	Cpu used 11.90%.
+2019/3/30 11:28:05  Processed 92.00% triples.	Memory used 6.90%.	Cpu used 11.50%.
+2019/3/30 11:28:33  Processed 96.00% triples.	Memory used 6.90%.	Cpu used 11.60%.
+2019/3/30 11:29:01  Processed 100.00% triples.	Memory used 6.90%.	Cpu used 11.40%.
+[0.738788, 0.261212]
+
+2019/3/30 11:29:02  epoch 10: Average_loss=0.114178
+
+
+2019/3/30 11:29:02 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:29:30  Processed 4.00% triples.	Memory used 6.90%.	Cpu used 11.70%.
+2019/3/30 11:29:58  Processed 8.00% triples.	Memory used 7.00%.	Cpu used 11.80%.
+2019/3/30 11:30:22  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:30:43  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 11:31:05  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 11:31:27  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 11:31:48  Processed 28.00% triples.	Memory used 5.30%.	Cpu used 11.80%.
+2019/3/30 11:32:10  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:32:30  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:32:51  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:33:13  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:33:35  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:33:56  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:34:18  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:34:42  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:35:02  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 9.50%.
+2019/3/30 11:35:24  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:35:44  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:36:06  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:36:27  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:36:48  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:37:09  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:37:30  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:37:50  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:38:12  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 7.90%.
+[0.953174, 0.046826]
+
+2019/3/30 11:38:13  epoch 11: Average_loss=0.109428
+
+
+2019/3/30 11:38:13 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:38:33  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:38:53  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:39:15  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 10.00%.
+2019/3/30 11:39:35  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:39:56  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:40:16  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:40:37  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:40:58  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:41:17  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:41:39  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:41:59  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 10.60%.
+2019/3/30 11:42:20  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:42:42  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 11:43:03  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:43:24  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:43:44  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:44:06  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:44:27  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:44:47  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:45:08  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:45:27  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:45:48  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:46:08  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:46:29  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 11:46:50  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+[0.500540, 0.499460]
+
+2019/3/30 11:46:51  epoch 12: Average_loss=0.106491
+
+
+2019/3/30 11:46:51 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:47:10  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:47:30  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:47:51  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:48:12  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:48:32  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:48:52  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:49:14  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:49:36  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 11:49:56  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:50:17  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:50:37  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:50:56  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:51:15  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 11:51:34  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 11:51:53  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:52:11  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:52:31  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 11:52:51  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 11:53:10  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 11:53:29  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 11:53:47  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 11:54:07  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 11:54:28  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:54:47  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:55:08  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+[0.961249, 0.038751]
+
+2019/3/30 11:55:09  epoch 13: Average_loss=0.102150
+
+
+2019/3/30 11:55:09 Saving the best model temporarily...
+Saved.
+
+2019/3/30 11:55:29  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:55:49  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 11:56:08  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:56:27  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 11:56:49  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:57:10  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 11:57:33  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 11:57:55  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:58:16  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 11:58:37  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 11:58:58  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 11:59:20  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 11:59:41  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:00:03  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:00:24  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:00:45  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:01:04  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:01:23  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:01:43  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:02:03  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:02:26  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:02:48  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:03:10  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:03:32  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:03:53  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+[0.224847, 0.775153]
+
+2019/3/30 12:03:54  epoch 14: Average_loss=0.098892
+
+
+2019/3/30 12:03:54 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:04:12  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:04:31  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 12:04:52  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 12:05:12  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:05:33  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:05:53  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:06:14  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:06:34  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:06:56  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:07:14  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:07:36  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:07:57  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:08:20  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.70%.
+2019/3/30 12:08:41  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:09:00  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:09:21  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:09:41  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:10:02  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:10:23  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:10:44  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 12:11:06  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 12:11:29  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:11:51  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 12:12:11  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:12:33  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+[0.947472, 0.052528]
+
+2019/3/30 12:12:34  epoch 15: Average_loss=0.095276
+
+
+2019/3/30 12:12:34 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:12:54  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:13:17  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 12:13:39  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:13:59  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:14:19  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:14:40  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:15:01  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:15:23  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:15:45  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 12:16:06  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:16:29  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:16:50  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:17:12  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:17:34  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 12:17:56  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:18:18  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 12:18:39  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 12:19:00  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:19:22  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:19:42  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:20:03  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:20:24  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:20:45  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:21:07  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:21:28  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+[0.024328, 0.975672]
+
+2019/3/30 12:21:29  epoch 16: Average_loss=0.091170
+
+
+2019/3/30 12:21:30 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:21:50  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:22:10  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:22:30  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:22:51  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:23:11  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:23:32  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:23:53  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:24:15  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:24:34  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:24:56  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:25:17  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:25:38  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:25:59  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.50%.
+2019/3/30 12:26:18  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:26:40  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:27:01  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:27:22  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:27:44  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:28:04  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:28:25  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:28:45  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:29:06  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:29:26  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:29:47  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 12:30:07  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+[0.732954, 0.267046]
+
+2019/3/30 12:30:08  epoch 17: Average_loss=0.087336
+
+
+2019/3/30 12:30:08 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:30:28  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:30:48  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:31:08  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:31:28  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:31:48  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:32:08  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 12:32:28  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:32:48  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:33:09  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:33:29  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:33:50  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:34:13  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.00%.
+2019/3/30 12:34:35  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:34:56  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 12:35:17  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:35:39  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:36:00  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 9.80%.
+2019/3/30 12:36:20  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:36:40  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:37:01  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:37:23  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:37:44  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:38:04  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:38:24  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:38:45  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+[0.848936, 0.151064]
+
+2019/3/30 12:38:46  epoch 18: Average_loss=0.084514
+
+
+2019/3/30 12:38:46 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:39:05  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:39:24  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:39:44  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:40:06  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:40:27  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 8.40%.
+2019/3/30 12:40:45  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:41:04  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 12:41:24  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:41:44  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:42:04  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:42:23  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:42:45  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:43:08  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:43:29  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:43:51  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:44:14  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:44:37  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:44:58  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:45:21  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.40%.
+2019/3/30 12:45:42  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:46:04  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:46:26  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.20%.
+2019/3/30 12:46:46  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 21.10%.
+2019/3/30 12:47:08  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:47:27  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+[0.913525, 0.086475]
+
+2019/3/30 12:47:28  epoch 19: Average_loss=0.080361
+
+
+2019/3/30 12:47:29 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:47:47  Processed 4.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:48:09  Processed 8.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:48:31  Processed 12.00% triples.	Memory used 4.90%.	Cpu used 8.30%.
+2019/3/30 12:48:53  Processed 16.00% triples.	Memory used 4.90%.	Cpu used 8.90%.
+2019/3/30 12:49:13  Processed 20.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:49:35  Processed 24.00% triples.	Memory used 4.90%.	Cpu used 9.50%.
+2019/3/30 12:49:55  Processed 28.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:50:16  Processed 32.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:50:39  Processed 36.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:51:02  Processed 40.00% triples.	Memory used 4.90%.	Cpu used 8.10%.
+2019/3/30 12:51:20  Processed 44.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:51:41  Processed 48.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:52:02  Processed 52.00% triples.	Memory used 4.90%.	Cpu used 8.70%.
+2019/3/30 12:52:22  Processed 56.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+2019/3/30 12:52:44  Processed 60.00% triples.	Memory used 4.90%.	Cpu used 9.60%.
+2019/3/30 12:53:05  Processed 64.00% triples.	Memory used 4.90%.	Cpu used 8.60%.
+2019/3/30 12:53:25  Processed 68.00% triples.	Memory used 4.90%.	Cpu used 8.50%.
+2019/3/30 12:53:46  Processed 72.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:54:07  Processed 76.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:54:28  Processed 80.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:54:49  Processed 84.00% triples.	Memory used 4.90%.	Cpu used 9.30%.
+2019/3/30 12:55:08  Processed 88.00% triples.	Memory used 4.90%.	Cpu used 8.80%.
+2019/3/30 12:55:28  Processed 92.00% triples.	Memory used 4.90%.	Cpu used 9.20%.
+2019/3/30 12:55:48  Processed 96.00% triples.	Memory used 4.90%.	Cpu used 9.00%.
+2019/3/30 12:56:10  Processed 100.00% triples.	Memory used 4.90%.	Cpu used 9.10%.
+[0.936521, 0.063480]
+
+2019/3/30 12:56:11  epoch 20: Average_loss=0.077101
+
+
+2019/3/30 12:56:11 Saving the best model temporarily...
+Saved.
+
+2019/3/30 12:56:11  Training costs 02:53:41
+
+2019/3/30 12:56:11 Saving model...
+
+2019/3/30 12:56:11  Collecting some information...
+2019/3/30 12:56:11  Totally costs 02:53:41
+2019/3/30 12:56:11  All done.

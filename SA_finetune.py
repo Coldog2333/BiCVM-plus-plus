@@ -9,18 +9,19 @@ from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 torch.cuda.set_device(1)
 plt.switch_backend('agg')
 
+# SAdir = '../data/aclImdb_v1/tiny/train'
 SAdir = '../data/aclImdb_v1/aclImdb/train'
 pretrain_MultiCVM = './models/full_MultiCVM_best_params.pkl'
 
 # --------------------------------------------------------------
 # Hyper Parameters
-EPOCH = 20
-WEIGHT_DECAY = 1 * 1e-4
+EPOCH = 25
+WEIGHT_DECAY = 1 * 1e-5
 BATCH_SIZE = 1
 LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_SA1.jpg'
-model_name = 'SA1'
+Training_pic_path = 'Training_result_SA2.jpg'
+model_name = 'SA2'
 model_information_txt = model_name + '_info.txt'
 
 Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
@@ -52,10 +53,10 @@ net.cuda()
 
 MultiCVM_params = list(map(id, net.BiCVM.parameters()))
 SAnet_params = filter(lambda p: id(p) not in MultiCVM_params, net.parameters())
-# optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
-optimizer = torch.optim.Adam([{'params': SAnet_params}, {'params': net.BiCVM.parameters(), 'lr': LR / 10}],
-                             lr=LR,
-                             weight_decay=WEIGHT_DECAY)
+optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
+# optimizer = torch.optim.Adam([{'params': SAnet_params}, {'params': net.BiCVM.parameters(), 'lr': LR / 10}],
+#                              lr=LR,
+#                              weight_decay=WEIGHT_DECAY)
 loss_func = torch.nn.MSELoss()
 
 # Training

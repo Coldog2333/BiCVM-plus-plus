@@ -14,17 +14,17 @@ pretrain_MultiCVM = './models/full_MultiCVM_best_params.pkl'
 
 # --------------------------------------------------------------
 # Hyper Parameters
-EPOCH = 20
+EPOCH = 25
 WEIGHT_DECAY = 1 * 1e-5
 BATCH_SIZE = 1
 LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_SA_freeze.jpg'
+Training_pic_path = 'Training_result_freeze.jpg'
 model_name = 'SA_freeze'
 model_information_txt = model_name + '_info.txt'
 
-# Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------

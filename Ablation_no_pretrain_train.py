@@ -3,7 +3,7 @@ import datetime
 import psutil
 import torch
 import matplotlib.pyplot as plt
-from network import Net4Ablation
+from network import Net4Ablation, SAnet
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
 torch.cuda.set_device(1)
@@ -13,13 +13,13 @@ SAdir = '../data/aclImdb_v1/aclImdb/train'
 
 # --------------------------------------------------------------
 # Hyper Parameters
-EPOCH = 20
-WEIGHT_DECAY = 1 * 1e-4
+EPOCH = 25
+WEIGHT_DECAY = 1 * 1e-5
 BATCH_SIZE = 1
 LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_no_pretrain1.jpg'
-model_name = 'SA_no_pretrain1'
+Training_pic_path = 'Training_result_no_pretrain2.jpg'
+model_name = 'SA_no_pretrain2'
 model_information_txt = model_name + '_info.txt'
 
 Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
@@ -46,7 +46,8 @@ def delta_time(datetime1, datetime2):
     second += (datetime2.second - datetime1.second)
     return second
 # --------------------------------------------------------------
-net = Net4Ablation()
+# net = Net4Ablation()
+net = SAnet(load_pretrain=False)
 net.cuda()
 
 optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
@@ -68,6 +69,7 @@ for epoch in range(EPOCH):
 
         label = net(s1)
 
+        print(label.shape, ground_truth)
         loss = loss_func(label, ground_truth)
         losses += loss.item()
         optimizer.zero_grad()
