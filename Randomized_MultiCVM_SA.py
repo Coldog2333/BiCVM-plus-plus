@@ -6,23 +6,27 @@ import matplotlib.pyplot as plt
 from network import SAnet
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 1
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 SAdir = '../data/aclImdb_v1/aclImdb/train'
+# SAdir = '../data/aclImdb_v1/tiny/train'
+en_word2vec = '../word2vec/en/enwiki_300.model'
+# en_word2vec = '../word2vec/en/en.bin'
 # --------------------------------------------------------------
 # Hyper Parameters
 EPOCH = 25
-WEIGHT_DECAY = 1 * 1e-5
+LR = 1e-5
+WEIGHT_DECAY = 1e-4
 BATCH_SIZE = 1
-LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_random.jpg'
-model_name = 'SA_random'
+Training_pic_path = 'Training_result_random3.jpg'
+model_name = 'SA_random3'
 model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200, OOV_strategy='random')
+# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200, OOV_strategy='random')
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
@@ -46,15 +50,13 @@ def delta_time(datetime1, datetime2):
     return second
 # --------------------------------------------------------------
 # net = Net4Ablation()
-net = SAnet(load_pretrain=False)
+net = SAnet(load_pretrain=False, GPU_ID=GPU)
 net.cuda()
 
 MultiCVM_params = list(map(id, net.BiCVM.parameters()))
 SAnet_params = filter(lambda p: id(p) not in MultiCVM_params, net.parameters())
-# optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
-optimizer = torch.optim.Adam([{'params': SAnet_params}, {'params': net.BiCVM.parameters(), 'lr': LR / 10}],
-                             lr=LR,
-                             weight_decay=WEIGHT_DECAY)
+optimizer = torch.optim.Adam(SAnet_params, lr=LR, weight_decay=WEIGHT_DECAY)
+
 loss_func = torch.nn.MSELoss()
 
 # Training
@@ -86,7 +88,7 @@ for epoch in range(EPOCH):
                   (show_time(datetime.datetime.now()), count / sample_size * 100, psutil.virtual_memory().percent,
                    psutil.cpu_percent(1)))
 
-    print('[%f, %f]' % (label[:, 0], label[:, 1]))
+    print('[%f, %f]' % (label[:, :, 0], label[:, :, 1]))
     print('\n%s  epoch %d: Average_loss=%f\n' % (show_time(datetime.datetime.now()), epoch + 1, losses / (step + 1)))
 
     plotx.append(epoch + 1)

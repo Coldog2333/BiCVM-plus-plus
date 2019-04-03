@@ -3,19 +3,22 @@ from network import SAnet
 import matplotlib.pyplot as plt
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 1
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 SAdir = '../data/aclImdb_v1/aclImdb/test'
 # SAdir = '../data/aclImdb_v1/tiny/test'
-full_model = './models/SA1_best_params.pkl'
-pretrain_MultiCVM = './models/full_MultiCVM_best_params.pkl'
+# full_model = './models/SA1_200_best_params.pkl'
+full_model = './models/SA_random2_best_params.pkl'
+en_word2vec = '../word2vec/en/enwiki_300.model'
+# en_word2vec = '../word2vec/en/en.bin'
 
-Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=1, shuffle=False, num_workers=0)
+Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200)
+train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=1, shuffle=False)
 sample_size = Dataset.__len__()
 
-net = SAnet(pretrain_MultiCVM)
+net = SAnet(load_pretrain=False, GPU_ID=GPU)
 net.load_state_dict(torch.load(full_model))
 net.cuda()
 net.eval()

@@ -1,12 +1,12 @@
 import torch
 
 class CVM(torch.nn.Module):
-    def __init__(self, lang):
+    def __init__(self, lang, GPU_ID=0):
         super(CVM, self).__init__()
         self.language = lang
         self.lstm1 = torch.nn.LSTM(input_size=300, hidden_size=300, batch_first=True)   # 用于调整词向量(隐层activation)
         self.lstm2 = torch.nn.LSTM(input_size=300, hidden_size=512, batch_first=True)   # 用于生成句向量
-        self.attention = Attention()
+        self.attention = Attention(GPU_ID=GPU_ID)
         self.Wr = torch.nn.Linear(in_features=512, out_features=512,bias=False)
         self.Wp = torch.nn.Linear(in_features=512, out_features=512, bias=False)
 
@@ -21,7 +21,7 @@ class CVM(torch.nn.Module):
         return h_star, out1
 
 class Attention(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, GPU_ID=0):
         super(Attention, self).__init__()
         self.Wh = torch.nn.Linear(in_features=512, out_features=512, bias=False)# 即所谓trainable matrix
         self.WN = torch.nn.Linear(in_features=512, out_features=512, bias=False)
@@ -29,10 +29,12 @@ class Attention(torch.nn.Module):
 
         self.ptf = Penalized_tanh()
 
+        self.GPU_ID = GPU_ID
+
     def forward(self, H, h_N):
         # H: [batch size, N, dim]
         # h_N: [batch size, 1, dim]
-        eN = torch.ones((H.size(0), H.size(1), 1)).cuda()   # eN: [batch size, 1, N]
+        eN = torch.ones((H.size(0), H.size(1), 1)).cuda(self.GPU_ID)   # eN: [batch size, 1, N]
         # M = torch.tanh(self.Wh(H) + self.WN(eN * h_N))
         M = self.ptf(self.Wh(H) + self.WN(eN * h_N))
         alpha = torch.softmax(self.w(M), -1).permute(0, 2, 1)
@@ -40,11 +42,11 @@ class Attention(torch.nn.Module):
         return r
 
 class MultiCVM(torch.nn.Module):
-    def __init__(self, mode='train'):
+    def __init__(self, mode='train', GPU_ID=0):
         super(MultiCVM, self).__init__()
         # self.CVM3 = CVM(lang='Chinese')
-        self.CVM1 = CVM(lang='English')
-        self.CVM2 = CVM(lang='German')
+        self.CVM1 = CVM(lang='English', GPU_ID=GPU_ID)
+        self.CVM2 = CVM(lang='German', GPU_ID=GPU_ID)
 
         self.mode = mode
 
@@ -64,6 +66,9 @@ class MultiCVM(torch.nn.Module):
         elif self.mode == 'eval':
             cvm1_out, _ = self.CVM1(s1)
             return cvm1_out
+        elif self.mode == 'hidden':
+            _, out = self.CVM1(s1)
+            return out
         else:
             raise NameError('Unknown mode.')
 
@@ -89,16 +94,16 @@ class Penalized_tanh(torch.nn.Module):
 
 
 class SAnet(torch.nn.Module):
-    def __init__(self, MultiCVM_model='', load_pretrain=True, freeze_MultiCVM=False):
+    def __init__(self, MultiCVM_model='', load_pretrain=True, GPU_ID=0, freeze_MultiCVM=False):
         super(SAnet, self).__init__()
 
-        self.BiCVM = MultiCVM(mode='eval')
+        self.BiCVM = MultiCVM(mode='eval', GPU_ID=GPU_ID)
         if load_pretrain == True:
             self.BiCVM.load_state_dict(torch.load(MultiCVM_model))
 
-        if freeze_MultiCVM == True:
-            for p in self.BiCVM.parameters():
-                p.requires_grad = False
+        # if freeze_MultiCVM == True:
+        #     for p in self.BiCVM.parameters():
+        #         p.requires_grad = False
 
         self.MLP1 = torch.nn.Linear(in_features=512, out_features=300)
         self.MLP2 = torch.nn.Linear(in_features=300, out_features=2)
@@ -159,10 +164,10 @@ class Net4SA(torch.nn.Module):
 
 
 class Net4Check(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, GPU_ID=0):
         super(Net4Check, self).__init__()
-        self.CVM1 = CVM(lang='English')
-        self.CVM2 = CVM(lang='German')
+        self.CVM1 = CVM(lang='English', GPU_ID=GPU_ID)
+        self.CVM2 = CVM(lang='German', GPU_ID=GPU_ID)
 
     def forward(self, s1):
         cvm1_out, hidden = self.CVM1(s1)

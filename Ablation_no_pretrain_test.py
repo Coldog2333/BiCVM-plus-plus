@@ -3,17 +3,20 @@ from network import Net4Ablation, SAnet
 import matplotlib.pyplot as plt
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 0
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 SAdir = '../data/aclImdb_v1/aclImdb/test'
-full_model = './models/SA_no_pretrain1_best_params.pkl'
+full_model = './models/SA_no_pretrain3_best_params.pkl'
+en_word2vec = '../word2vec/en/enwiki_300.model'
+# en_word2vec = '../word2vec/en/en.bin'
 
-Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200)
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=1, shuffle=False, num_workers=0)
 sample_size = Dataset.__len__()
 
-net = SAnet(load_pretrain=False)
+net = SAnet(load_pretrain=False, GPU_ID=GPU)
 net.load_state_dict(torch.load(full_model))
 net.cuda()
 net.eval()

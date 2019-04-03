@@ -6,27 +6,30 @@ import matplotlib.pyplot as plt
 from network import SAnet
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 1
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 # SAdir = '../data/aclImdb_v1/tiny/train'
 SAdir = '../data/aclImdb_v1/aclImdb/train'
-pretrain_MultiCVM = './models/full_MultiCVM_best_params.pkl'
+pretrain_MultiCVM = './models/MultiCVM_170K_random_best_params.pkl'
+# en_word2vec = '../word2vec/en/en.bin'
+en_word2vec = '../word2vec/en/enwiki_300.model'
 
 # --------------------------------------------------------------
 # Hyper Parameters
 EPOCH = 25
-WEIGHT_DECAY = 1 * 1e-5
+LR = 1e-5
+WEIGHT_DECAY = 1e-4
 BATCH_SIZE = 1
-LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_SA2.jpg'
-model_name = 'SA2'
+Training_pic_path = 'Training_result_SA2_200.jpg'
+model_name = 'SA2_200'
 model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200)
 # Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
+train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
 # some functions
@@ -48,7 +51,7 @@ def delta_time(datetime1, datetime2):
     second += (datetime2.second - datetime1.second)
     return second
 # --------------------------------------------------------------
-net = SAnet(pretrain_MultiCVM)
+net = SAnet(pretrain_MultiCVM, GPU_ID=GPU)
 net.cuda()
 
 MultiCVM_params = list(map(id, net.BiCVM.parameters()))

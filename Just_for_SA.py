@@ -6,24 +6,28 @@ import matplotlib.pyplot as plt
 from network import Net4SA
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 0
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 SAdir = '../data/aclImdb_v1/aclImdb/train'
+en_word2vec = '../word2vec/en/enwiki_300.model'
+# en_word2vec = '../word2vec/en/en.bin'
 
 # --------------------------------------------------------------
 # Hyper Parameters
 EPOCH = 25
-WEIGHT_DECAY = 1 * 1e-5
+LR = 1e-5
+WEIGHT_DECAY = 1e-4
 BATCH_SIZE = 1
-LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_just.jpg'
-model_name = 'SA_just'
+
+Training_pic_path = 'Training_result_just3.jpg'
+model_name = 'SA_just3'
 model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200, OOV_strategy='random')
+# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200, OOV_strategy='random')
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------

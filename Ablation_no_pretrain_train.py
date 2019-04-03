@@ -6,24 +6,27 @@ import matplotlib.pyplot as plt
 from network import Net4Ablation, SAnet
 from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
 
-torch.cuda.set_device(1)
+GPU = 0
+torch.cuda.set_device(GPU)
 plt.switch_backend('agg')
 
 SAdir = '../data/aclImdb_v1/aclImdb/train'
-
+en_word2vec = '../word2vec/en/enwiki_300.model'
+# en_word2vec = '../word2vec/en/en.bin'
 # --------------------------------------------------------------
 # Hyper Parameters
 EPOCH = 25
-WEIGHT_DECAY = 1 * 1e-5
+LR = 1e-5
+WEIGHT_DECAY = 1e-4
 BATCH_SIZE = 1
-LR = 1e-4
 LR_strategy = []
-Training_pic_path = 'Training_result_no_pretrain2.jpg'
-model_name = 'SA_no_pretrain2'
+
+Training_pic_path = 'Training_result_no_pretrain3.jpg'
+model_name = 'SA_no_pretrain3'
 model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
-# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+# Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec=en_word2vec)
+Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200, OOV_strategy='random')
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
@@ -47,7 +50,7 @@ def delta_time(datetime1, datetime2):
     return second
 # --------------------------------------------------------------
 # net = Net4Ablation()
-net = SAnet(load_pretrain=False)
+net = SAnet(load_pretrain=False, GPU_ID=GPU)
 net.cuda()
 
 optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
@@ -69,7 +72,6 @@ for epoch in range(EPOCH):
 
         label = net(s1)
 
-        print(label.shape, ground_truth)
         loss = loss_func(label, ground_truth)
         losses += loss.item()
         optimizer.zero_grad()

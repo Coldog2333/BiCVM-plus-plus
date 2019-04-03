@@ -13,25 +13,29 @@ corpus1_file = '../data/training-parallel/part/europarl-part.de-en.en'
 corpus2_file = '../data/training-parallel/part/europarl-part.de-en.de'
 # corpus1_file = '../data/training-parallel/tiny/europarl-tiny.de-en.en'
 # corpus2_file = '../data/training-parallel/tiny/europarl-tiny.de-en.de'
-word2vec_en = '../word2vec/en/en.bin'
+word2vec_en = '../word2vec/en/enwiki_300.model'
+# word2vec_en = '../word2vec/en/en.bin'
 
 # --------------------------------------------------------------
 # Hyper Parameters
-EPOCH = 20
-WEIGHT_DECAY = 1 * 1e-5
+EPOCH = 5
 BATCH_SIZE = 1
-LR = 1e-4
+LR = 1e-5
 LR_strategy = []
+WEIGHT_DECAY = 1e-4
 
 use_checkpoint = False
 checkpoint_path = './checkpoints/checkpoint_0epoch.ckpt'
 Training_pic_path = 'Training_result.jpg'
-model_name = 'full_MultiCVM_delete'
+model_name = 'MultiCVM_170K_random'
 model_information_txt = model_name + '_info.txt'
+OOV_strategy = 'random'
 
-Dataset = CorpusLoader(corpus1=corpus1_file, corpus2=corpus2_file, num_of_noise=10)      # 如果内存允许
-# Dataset = MemoryFriendlyLoader(corpus1=corpus1_file, corpus2=corpus2_file)
-train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
+Dataset = CorpusLoader(corpus0=corpus1_file, corpus1=corpus2_file,
+                               num_of_noise=30, word2vec0=word2vec_en, OOV_strategy=OOV_strategy)      # 如果内存允许
+# Dataset = MemoryFriendlyLoader(corpus0=corpus1_file, corpus1=corpus2_file,
+#                               num_of_noise=5, word2vec0=word2vec_en, OOV_strategy=OOV_strategy)
+train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
 # some functions
