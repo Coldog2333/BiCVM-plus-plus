@@ -14,7 +14,9 @@ CUDA is suggested ([https://developer.nvidia.com/cuda-toolkit](https://developer
 The current release has been tested on Ubuntu 16.04.6 LTS.
 
 ### **Clone the repository**
-`sh git clone https://github.com/Coldog2333/BiCVM-plus-plus`
+```
+sh git clone https://github.com/Coldog2333/BiCVM-plus-plus
+```
 
 ### **Download datasets and models**
 ```sh
@@ -25,7 +27,9 @@ wget http://coldog.cn/nlp/bicvmpp/models.zip
 unzip models.zip
 ```
 ### **Pre-train BiCVM++**
-`python3 train.py [[option][value]]...`
+```
+python3 train.py [[option][value]]...
+```
 
 **Options**
 + **--data:** The dataset that you want to train on. Valid Values: [tiny, 1K, 17K, 170K, full], default: tiny
@@ -38,10 +42,15 @@ unzip models.zip
 + **-h, --help:** Get help.
 
 **Example**
-`python3 train.py --data full --act tanh --noise 25 --gpuID 1 --mode MemoryFriendly --bid F`
+```
+python3 train.py --data full --act tanh --noise 25 --mode MemoryFriendly --bid F
+```
 
 ### **Fine-tune on Sentiment Analysis**
-`python3 SA_finetune.py [[option][value]]...`
+```
+python3 SA_finetune.py [[option][value]]...
+```
+
 
 **Options**
 + **--act:** activation utilized in Pipeline. Valid values:[tanh, ptf, penalized tanh]. default: penalized tanh
@@ -57,13 +66,19 @@ unzip models.zip
 **Example**
 
 + finetune full BiCVM++
-`python3 SA_finetune.py --model SA --act tanh --freeze F --pretrain T --gpuID 1 --mode Effective --bid F`
+```
+python3 SA_finetune.py --model SA --act tanh --freeze F --pretrain T --gpuID 1 --mode Effective --bid F
+```
 
 + finetune the baseline, Just for Sentiment Analysis
-`python3 SA_finetune.py --model SA_just --act ptf --gpuID 1 --mode Effective --task just`
+```
+python3 SA_finetune.py --model SA_just --act ptf --gpuID 1 --mode Effective --task just
+```
 
 ### **Evaluate**
-`python3 SA_test.py [[option][value]]...`
+```
+python3 SA_test.py [[option][value]]...
+```
 
 **Options**
 + **--act:** activation utilized in Pipeline. Valid values: [tanh, ptf, penalized tanh]. default: penalized tanh
@@ -76,5 +91,7 @@ unzip models.zip
 **Example**
 
 Evaluate full BiCVM++
-`python3 SA_test.py --model SA --act tanh --gpuID 1 --bid F`
+```
+python3 SA_test.py --model SA --act tanh --gpuID 1 --bid F
+```
 
