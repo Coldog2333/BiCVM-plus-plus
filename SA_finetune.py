@@ -3,18 +3,48 @@ import datetime
 import psutil
 import torch
 import matplotlib.pyplot as plt
-from network import SAnet
-from load_data import MemoryFriendlyLoader4SA, CorpusLoader4SA
+from utils import show_time, delta_time
+from network import SAnet, Net4SA
+from load_data import CorpusLoader4SA
+import sys
+import getopt
 
-GPU = 1
-torch.cuda.set_device(GPU)
+# ------------------------------
+# I don't know whether you have a GPU.
 plt.switch_backend('agg')
+# Program parameter
+gpuID = 1
+MODE = 'MemoryFriendly'
+ACTIVATION = 'penalized tanh'
+FREEZE = False
+PRETRAIN = True
+BIDIRECTION = False
+model_name = 'temp'
+TASK = ''
 
-# SAdir = '../data/aclImdb_v1/tiny/train'
-SAdir = '../data/aclImdb_v1/aclImdb/train'
-pretrain_MultiCVM = './models/MultiCVM_170K_random_best_params.pkl'
+SAdir = '../data/aclImdb_v1/tiny/train'
+# SAdir = '../data/aclImdb_v1/aclImdb/train'
+pretrain_MultiCVM = './models/BiCVMpp_tiny_best_params.pkl'
 # en_word2vec = '../word2vec/en/en.bin'
 en_word2vec = '../word2vec/en/enwiki_300.model'
+oov_embedding_file = './models/en'
+
+if sys.argv[1] in ['-h', '--help']:
+    print("""BiCVM++ version beta
+usage: python3 SA_finetune.py [[option] [value]]...
+options:
+--act          activation utilized in Pipeline
+               valid values:[tanh, ptf, penalized tanh]. default: penalized tanh
+--freeze       Do you want to freeze the parameters of CVM? [T/F]. default: False
+--pretrain     Do you want to load pretrain weights? [T/F]. default: True
+--bid          Use bidirectional LSTM? [T/F]. default: False
+--mode         Do you want to use MemoryFriendlyLoader or CorpusLoader? [MemoryFriendly/Effective]
+--model        the name of model you want to save as. default: temp 
+--gpuID        the No. of the GPU you want to use. default: No.1
+--task         special for the baseline Just for Sentiment Analysis.
+               valid values: ['Just4SA', 'just', 'Just']
+-h, --help     get help.""")
+    exit(0)
 
 # --------------------------------------------------------------
 # Hyper Parameters
@@ -23,40 +53,54 @@ LR = 1e-5
 WEIGHT_DECAY = 1e-4
 BATCH_SIZE = 1
 LR_strategy = []
-Training_pic_path = 'Training_result_SA2_200.jpg'
-model_name = 'SA2_200'
-model_information_txt = model_name + '_info.txt'
 
-Dataset = CorpusLoader4SA(SAdir=SAdir, word2vec=en_word2vec, cut=200)
-# Dataset = MemoryFriendlyLoader4SA(SAdir=SAdir, word2vec='../word2vec/en/en.bin')
+for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [strParameter[2:] + '=' for strParameter in sys.argv[1::2]])[0]:
+    if strOption == '--act':                                    # activation
+        if strArgument in ['tanh']:
+            ACTIVATION = 'tanh'
+        elif strArgument in ['penalized_tanh', 'ptf']:
+            ACTIVATION = 'penalized tanh'
+    elif strOption == '--freeze':
+        if strArgument in ['True', 'TRUE', 'true', 'T']:
+            FREEZE = True
+        elif strArgument in ['False', 'FALSE', 'false', 'F']:
+            FREEZE = False
+    elif strOption == '--pretrain':
+        if strArgument in ['True', 'TRUE', 'true', 'T']:
+            PRETRAIN = True
+        elif strArgument in ['False', 'FALSE', 'false', 'F']:
+            PRETRAIN = False
+    elif strOption == '--bid':
+        if strArgument in ['True', 'TRUE', 'true', 'T']:
+            BIDIRECTION = True
+        elif strArgument in ['False', 'FALSE', 'false', 'F']:
+            BIDIRECTION = False
+    elif strOption == '--model':
+        model_name = strArgument
+        model_information_txt = model_name + '_info.txt'
+        Training_pic_path = model_name + '.jpg'
+    elif strOption == '--gpuID':                                # gpu id
+        gpuID = int(strArgument)
+        torch.cuda.set_device(gpuID)
+    elif strOption == '--task':
+        TASK = strArgument
+# --------------------------------------------------------------
+# load data
+Dataset = CorpusLoader4SA(SAdir=SAdir, mode=MODE, word2vec=en_word2vec, cut=200, OOV_strategy='random', oov_embedding_file=oov_embedding_file)
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
-# some functions
-def show_time(now):
-    s = str(now.year) + '/' + str(now.month) + '/' + str(now.day) + ' ' \
-        + '%02d' % now.hour + ':' + '%02d' % now.minute + ':' + '%02d' % now.second
-    return s
-
-
-def delta_time(datetime1, datetime2):
-    if datetime1 > datetime2:
-        datetime1, datetime2 = datetime2, datetime1
-    second = 0
-    # second += (datetime2.year - datetime1.year) * 365 * 24 * 3600
-    # second += (datetime2.month - datetime1.month) * 30 * 24 * 3600
-    second += (datetime2.day - datetime1.day) * 24 * 3600
-    second += (datetime2.hour - datetime1.hour) * 3600
-    second += (datetime2.minute - datetime1.minute) * 60
-    second += (datetime2.second - datetime1.second)
-    return second
-# --------------------------------------------------------------
-net = SAnet(pretrain_MultiCVM, GPU_ID=GPU)
+if TASK == '':
+    net = SAnet(pretrain_MultiCVM, load_pretrain=PRETRAIN, freeze_MultiCVM=FREEZE, activation=ACTIVATION, GPU_ID=gpuID, bidirection=BIDIRECTION)
+elif TASK in ['Just4SA', 'just', 'Just']:
+    net = Net4SA(activation=ACTIVATION)
+else:
+    raise NameError('Unknown [-task]')
 net.cuda()
 
-MultiCVM_params = list(map(id, net.BiCVM.parameters()))
-SAnet_params = filter(lambda p: id(p) not in MultiCVM_params, net.parameters())
-optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
+# MultiCVM_params = list(map(id, net.BiCVM.parameters()))
+# SAnet_params = filter(lambda p: id(p) not in MultiCVM_params, net.parameters())
+optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=LR, weight_decay=WEIGHT_DECAY)
 # optimizer = torch.optim.Adam([{'params': SAnet_params}, {'params': net.BiCVM.parameters(), 'lr': LR / 10}],
 #                              lr=LR,
 #                              weight_decay=WEIGHT_DECAY)
@@ -108,6 +152,8 @@ for epoch in range(EPOCH):
         print('Saved.\n')
         check_point = losses / (step + 1)
 
+net.cpu()
+Dataset.save_oov_embedding(oov_embedding_file)
 plt.plot(plotx, ploty)
 plt.savefig(Training_pic_path)
 

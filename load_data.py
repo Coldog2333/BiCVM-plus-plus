@@ -1,5 +1,6 @@
 import os
 import random
+import pickle
 import datetime
 import gensim
 import psutil
@@ -10,6 +11,7 @@ import torch.utils.data
 """
 embedding_dim = 300
 
+
 def load_sentences(corpus):
     sentences = []
     with open(corpus, 'r', encoding='utf8') as f:
@@ -18,62 +20,65 @@ def load_sentences(corpus):
         sentences.append(r.split(' '))
     return sentences
 
+# class MemoryFriendlyLoader(torch.utils.data.Dataset):
+#     def __init__(self, corpus0, corpus1, word2vec0='../word2vec/en/en.bin', word2vec1='../word2vec/de/de.bin', num_of_noise=3, OOV_strategy='random'):
+#         self.num_of_noise = num_of_noise            # 对比句子数
+#         self.OOV_strategy = OOV_strategy
+#
+#         # list of sentence in corpus, [0] for en-corpus, [1] for de-corpus
+#         self.sentences = [load_sentences(corpus0), load_sentences(corpus1)]
+#
+#         # word2vec model
+#         self.word2vec = [gensim.models.word2vec.Word2Vec.load(word2vec0), gensim.models.word2vec.Word2Vec.load(word2vec1)]
+#
+#         # dictionary of oov words
+#         self.oov_embedding_dict = [dict(), dict()]              # out-of-vocabulary词的词向量
+#
+#
+#     def word2vec_embedding(self, word, lang, OOV_strategy):     # lang = 0/1
+#         try:
+#             return torch.FloatTensor(self.word2vec[lang].wv.__getitem__(word)).view(1, embedding_dim), True
+#         except:
+#             if OOV_strategy == 'random':
+#                 if word not in self.oov_embedding_dict[lang].keys():
+#                     self.oov_embedding_dict[lang][word] = torch.rand((1, embedding_dim))  # record the random embedding of oov word
+#                 return self.oov_embedding_dict[lang][word], True
+#             elif OOV_strategy == 'cast':
+#                 return None, False
+#             elif OOV_strategy == 'zero':
+#                 return torch.zeros((1, embedding_dim)), True
+#
+#     def sentence2matrix(self, sentence, lang, OOV_strategy):
+#         matrix = torch.zeros(1, embedding_dim)
+#         for i in range(len(sentence)):
+#             embedding, flag = self.word2vec_embedding(sentence[i], lang=lang, OOV_strategy=OOV_strategy)
+#             if flag == True:
+#                 matrix = torch.cat((matrix, embedding), dim=0)
+#             else:
+#                 continue
+#         return matrix[1:, :]
+#
+#     def __getitem__(self, index):
+#         input0 = self.sentence2matrix(self.sentences[0][index], lang=0, OOV_strategy=self.OOV_strategy)
+#         input1 = self.sentence2matrix(self.sentences[1][index], lang=1, OOV_strategy=self.OOV_strategy)
+#
+#         disturb_input = []
+#         for i in range(self.num_of_noise):
+#             r = random.randint(0, self.__len__() - 1)
+#             disturb_input.append(self.sentence2matrix(self.sentences[1][r], lang=1, OOV_strategy=self.OOV_strategy))
+#
+#         return input0, input1, disturb_input
+#
+#     def __len__(self):
+#         return len(self.sentences[0])
+    
 
-class MemoryFriendlyLoader(torch.utils.data.Dataset):
-    def __init__(self, corpus0, corpus1, word2vec0='../word2vec/en/en.bin', word2vec1='../word2vec/de/de.bin', num_of_noise=3, OOV_strategy='random'):
-        self.num_of_noise = num_of_noise            # 对比句子数
-        self.OOV_strategy = OOV_strategy
-
-        # list of sentence in corpus, [0] for en-corpus, [1] for de-corpus
-        self.sentences = [load_sentences(corpus0), load_sentences(corpus1)]
-
-        # word2vec model
-        self.word2vec = [gensim.models.word2vec.Word2Vec.load(word2vec0), gensim.models.word2vec.Word2Vec.load(word2vec1)]
-
-        # dictionary of oov words
-        self.oov_embedding_dict = [dict(), dict()]              # out-of-vocabulary词的词向量
-
-
-    def word2vec_embedding(self, word, lang, OOV_strategy):     # lang = 0/1
-        try:
-            return torch.FloatTensor(self.word2vec[lang].wv.__getitem__(word)).view(1, embedding_dim), True
-        except:
-            if OOV_strategy == 'random':
-                if word not in self.oov_embedding_dict[lang].keys():
-                    self.oov_embedding_dict[lang][word] = torch.rand((1, embedding_dim))  # record the random embedding of oov word
-                return self.oov_embedding_dict[lang][word], True
-            elif OOV_strategy == 'cast':
-                return None, False
-            elif OOV_strategy == 'zero':
-                return torch.zeros((1, embedding_dim)), True
-
-    def sentence2matrix(self, sentence, lang, OOV_strategy):
-        matrix = torch.zeros(1, embedding_dim)
-        for i in range(len(sentence)):
-            embedding, flag = self.word2vec_embedding(sentence[i], lang=lang, OOV_strategy=OOV_strategy)
-            if flag == True:
-                matrix = torch.cat((matrix, embedding), dim=0)
-            else:
-                continue
-        return matrix[1:, :]
-
-    def __getitem__(self, index):
-        input0 = self.sentence2matrix(self.sentences[0][index], lang=0, OOV_strategy=self.OOV_strategy)
-        input1 = self.sentence2matrix(self.sentences[1][index], lang=1, OOV_strategy=self.OOV_strategy)
-
-        disturb_input = []
-        for i in range(self.num_of_noise):
-            r = random.randint(0, self.__len__() - 1)
-            disturb_input.append(self.sentence2matrix(self.sentences[1][r], lang=1, OOV_strategy=self.OOV_strategy))
-
-        return input0, input1, disturb_input
-
-    def __len__(self):
-        return len(self.sentences[0])
-
-
+# mode='MemoryFriendly' 等同于 MemoryFriendlyLoader
+# mode='Effective' 等同于 原CorpusLoader
 class CorpusLoader(torch.utils.data.Dataset):
-    def __init__(self, corpus0, corpus1, word2vec0='../word2vec/en/en.bin', word2vec1='../word2vec/de/de.bin', num_of_noise=3, OOV_strategy='random'):
+    def __init__(self, corpus0, corpus1, mode='MemoryFriendly',
+                 word2vec0='../word2vec/en/en.bin', word2vec1='../word2vec/de/de.bin',
+                 num_of_noise=3, OOV_strategy='random', oov_embedding_file=[]):
         self.num_of_noise = num_of_noise
         self.OOV_strategy = OOV_strategy
 
@@ -81,12 +86,17 @@ class CorpusLoader(torch.utils.data.Dataset):
 
         self.word2vec = [gensim.models.word2vec.Word2Vec.load(word2vec0), gensim.models.word2vec.Word2Vec.load(word2vec1)]
 
-        self.oov_embedding_dict = [dict(), dict()]              # out-of-vocabulary词的词向量
+        if oov_embedding_file == []:
+            self.oov_embedding_dict = [dict(), dict()]              # out-of-vocabulary词的词向量
+        else:
+            self.oov_embedding_dict = [self.load_oov_embedding(oov_embedding_file[0]), self.load_oov_embedding(oov_embedding_file[1])]
 
-        print('Initializing sentence matrices...')
-        self.matrix0 = self.initial_matrix(lang=0, OOV_strategy=self.OOV_strategy)
-        self.matrix1 = self.initial_matrix(lang=1, OOV_strategy=self.OOV_strategy)
-        print('Matrices are ready. Sample size = %d' % len(self.sentences[0]))
+        self.mode = mode
+        if self.mode == 'Effective':
+            print('Initializing sentence matrices...')
+            self.matrix0 = self.initial_matrix(lang=0, OOV_strategy=self.OOV_strategy)
+            self.matrix1 = self.initial_matrix(lang=1, OOV_strategy=self.OOV_strategy)
+            print('Matrices are ready. Sample size = %d' % len(self.sentences[0]))
 
     def word2vec_embedding(self, word, lang, OOV_strategy):     # lang = 0/1
         try:
@@ -122,79 +132,101 @@ class CorpusLoader(torch.utils.data.Dataset):
         return matrix
 
     def __getitem__(self, index):
-        input0 = self.matrix0[index]
-        input1 = self.matrix1[index]
-
         disturb_input = []
-        for i in range(self.num_of_noise):
-            r = random.randint(0, self.__len__() - 1)
-            disturb_input.append(self.matrix1[r])
 
+        if self.mode == 'Effective':
+            input0 = self.matrix0[index]
+            input1 = self.matrix1[index]
+
+            for i in range(self.num_of_noise):
+                r = random.randint(0, self.__len__() - 1)
+                disturb_input.append(self.matrix1[r])
+        elif self.mode == 'MemoryFriendly':
+            input0 = self.sentence2matrix(self.sentences[0][index], lang=0, OOV_strategy=self.OOV_strategy)
+            input1 = self.sentence2matrix(self.sentences[1][index], lang=1, OOV_strategy=self.OOV_strategy)
+
+            for i in range(self.num_of_noise):
+                r = random.randint(0, self.__len__() - 1)
+                disturb_input.append(self.sentence2matrix(self.sentences[1][r], lang=1, OOV_strategy=self.OOV_strategy))
+        else:
+            raise NameError('Unknown [-mode]. Valid Values are [Effective/MemoryFriendly]')
         return input0, input1, disturb_input
 
     def __len__(self):
         return len(self.sentences[0])
 
+    def save_oov_embedding(self, files):
+        with open(files[0], 'wb') as f:
+            pickle.dump(self.oov_embedding_dict[0], f)
+        with open(files[1], 'wb') as f:
+            pickle.dump(self.oov_embedding_dict[1], f)
 
-class MemoryFriendlyLoader4SA(torch.utils.data.Dataset):
-    def __init__(self, SAdir='../data/aclImdb_v1/aclImdb/train/', word2vec='../word2vec/en/en.bin', cut=200, OOV_strategy='random'):
-        self.OOV_strategy = OOV_strategy
-        self.sentences = []
-        # pos
-        for p in os.listdir(os.path.join(SAdir, 'pos')):
-            with open(os.path.join(SAdir, 'pos', p), 'r', encoding='utf8') as f:
-                self.sentences.append(f.read().split(' ')[:cut])
-
-        self.pos_no = len(self.sentences)       # 小于self.pos_no的都是pos
-        # neg
-        for p in os.listdir(os.path.join(SAdir, 'neg')):
-            with open(os.path.join(SAdir, 'neg', p), 'r', encoding='utf8') as f:
-                self.sentences.append(f.read().split(' ')[:cut])
-
-        self.word2vec = gensim.models.word2vec.Word2Vec.load(word2vec)
-        self.oov_embedding_dict = dict()   # out-of-vocabulary词的词向量
+    def load_oov_embedding(self, file):
+        with open(file, 'rb') as f:
+            return pickle.load(f)
 
 
-    def word2vec_embedding(self, word, OOV_strategy):
-        try:
-            return torch.FloatTensor(self.word2vec.wv.__getitem__(word)).view(1, embedding_dim), True
-        except:
-            if OOV_strategy == 'random':
-                if word not in self.oov_embedding_dict.keys():
-                    self.oov_embedding_dict[word] = torch.rand((1, embedding_dim))
-                return self.oov_embedding_dict[word], True
-            elif OOV_strategy == 'cast':
-                return None, False
-            elif OOV_strategy == 'zero':
-                return torch.zeros((1, embedding_dim)), True
 
-    def sentence2matrix(self, sentence, OOV_strategy):
-        matrix = torch.zeros(1, embedding_dim)
-        for i in range(len(sentence)):
-            embedding, flag = self.word2vec_embedding(sentence[i], OOV_strategy=OOV_strategy)
-            if flag == True:
-                matrix = torch.cat((matrix, embedding), dim=0)
-            else:
-                continue
-        return matrix[1:, :]
+# class MemoryFriendlyLoader4SA(torch.utils.data.Dataset):
+#     def __init__(self, SAdir='../data/aclImdb_v1/aclImdb/train/', word2vec='../word2vec/en/en.bin', cut=200, OOV_strategy='random'):
+#         self.OOV_strategy = OOV_strategy
+#         self.sentences = []
+#         # pos
+#         for p in os.listdir(os.path.join(SAdir, 'pos')):
+#             with open(os.path.join(SAdir, 'pos', p), 'r', encoding='utf8') as f:
+#                 self.sentences.append(f.read().split(' ')[:cut])
+#
+#         self.pos_no = len(self.sentences)       # 小于self.pos_no的都是pos
+#         # neg
+#         for p in os.listdir(os.path.join(SAdir, 'neg')):
+#             with open(os.path.join(SAdir, 'neg', p), 'r', encoding='utf8') as f:
+#                 self.sentences.append(f.read().split(' ')[:cut])
+#
+#         self.word2vec = gensim.models.word2vec.Word2Vec.load(word2vec)
+#         self.oov_embedding_dict = dict()   # out-of-vocabulary词的词向量
+#
+#
+#     def word2vec_embedding(self, word, OOV_strategy):
+#         try:
+#             return torch.FloatTensor(self.word2vec.wv.__getitem__(word)).view(1, embedding_dim), True
+#         except:
+#             if OOV_strategy == 'random':
+#                 if word not in self.oov_embedding_dict.keys():
+#                     self.oov_embedding_dict[word] = torch.rand((1, embedding_dim))
+#                 return self.oov_embedding_dict[word], True
+#             elif OOV_strategy == 'cast':
+#                 return None, False
+#             elif OOV_strategy == 'zero':
+#                 return torch.zeros((1, embedding_dim)), True
+#
+#     def sentence2matrix(self, sentence, OOV_strategy):
+#         matrix = torch.zeros(1, embedding_dim)
+#         for i in range(len(sentence)):
+#             embedding, flag = self.word2vec_embedding(sentence[i], OOV_strategy=OOV_strategy)
+#             if flag == True:
+#                 matrix = torch.cat((matrix, embedding), dim=0)
+#             else:
+#                 continue
+#         return matrix[1:, :]
+#
+#
+#     def __getitem__(self, index):
+#         input = self.sentence2matrix(self.sentences[index], OOV_strategy=self.OOV_strategy)
+#
+#         if index < self.pos_no:
+#             ground_truth = torch.FloatTensor([1, 0])
+#         else:
+#             ground_truth = torch.FloatTensor([0, 1])
+#
+#         return input, ground_truth
+#
+#     def __len__(self):
+#         return len(self.sentences)
 
-
-    def __getitem__(self, index):
-        input = self.sentence2matrix(self.sentences[index], OOV_strategy=self.OOV_strategy)
-
-        if index < self.pos_no:
-            ground_truth = torch.FloatTensor([1, 0])
-        else:
-            ground_truth = torch.FloatTensor([0, 1])
-
-        return input, ground_truth
-
-    def __len__(self):
-        return len(self.sentences)
-
-
+# mode='MemoryFriendly' 等同于 MemoryFriendlyLoader4SA
+# mode='Effective' 等同于 原CorpusLoader4SA
 class CorpusLoader4SA(torch.utils.data.Dataset):
-    def __init__(self, SAdir='../data/aclImdb_v1/aclImdb/train/', word2vec='../word2vec/en/en.bin', cut=200, OOV_strategy='random'):
+    def __init__(self, SAdir='../data/aclImdb_v1/aclImdb/train/', mode='MemoryFriendly', word2vec='../word2vec/en/en.bin', cut=200, OOV_strategy='random', oov_embedding_file=''):
         self.OOV_strategy = OOV_strategy
         self.sentences = []
         # pos
@@ -209,11 +241,17 @@ class CorpusLoader4SA(torch.utils.data.Dataset):
                 self.sentences.append(f.read().split(' ')[:cut])
 
         self.word2vec = gensim.models.word2vec.Word2Vec.load(word2vec)
-        self.oov_embedding_dict = dict()   # out-of-vocabulary词的词向量
+        if oov_embedding_file == '':
+            self.oov_embedding_dict = dict()              # out-of-vocabulary词的词向量
+        else:
+            self.oov_embedding_dict = self.load_oov_embedding(oov_embedding_file)
 
-        print('Initializing sentence matrices...')
-        self.matrix = self.initial_matrix()
-        print('Matrices are ready. Sample size = %d' % len(self.sentences))
+        self.mode = mode
+        if self.mode == 'Effective':
+            print('Initializing sentence matrices...')
+            self.matrix = self.initial_matrix()
+            print('Matrices are ready. Sample size = %d' % len(self.sentences))
+
 
     def word2vec_embedding(self, word, OOV_strategy):
         try:
@@ -249,7 +287,12 @@ class CorpusLoader4SA(torch.utils.data.Dataset):
         return matrix
 
     def __getitem__(self, index):
-        input = self.matrix[index]
+        if self.mode == 'Effective':
+            input = self.matrix[index]
+        elif self.mode == 'MemoryFriendly':
+            input = self.sentence2matrix(self.sentences[index], OOV_strategy=self.OOV_strategy)
+        else:
+            raise NameError('Unknown [-mode]. Valid Values are [Effective/MemoryFriendly]')
 
         if index < self.pos_no:
             ground_truth = torch.FloatTensor([1, 0])
@@ -260,3 +303,11 @@ class CorpusLoader4SA(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.sentences)
+
+    def save_oov_embedding(self, file):
+        with open(file, 'wb') as f:
+            pickle.dump(self.oov_embedding_dict, f)
+
+    def load_oov_embedding(self, file):
+        with open(file, 'rb') as f:
+            return pickle.load(f)
