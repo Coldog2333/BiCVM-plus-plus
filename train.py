@@ -3,18 +3,66 @@ import datetime
 import psutil
 import torch
 import matplotlib.pyplot as plt
+from utils import show_time, delta_time
 from network import MultiCVM, MyLoss
-from load_data import MemoryFriendlyLoader, CorpusLoader
+from load_data import CorpusLoader
+import sys
+import getopt
 
-torch.cuda.set_device(1)
+# ------------------------------
+# I don't know whether you have a GPU.
 plt.switch_backend('agg')
+# Program parameter
+gpuID = 0
+MODE = 'MemoryFriendly'
+ACTIVATION = 'penalized tanh'
+NOISE = 25
+BIDIRECTION = False
+model_name = ''
+Dataset = ''
 
-corpus1_file = '../data/training-parallel/part/europarl-part.de-en.en'
-corpus2_file = '../data/training-parallel/part/europarl-part.de-en.de'
-# corpus1_file = '../data/training-parallel/tiny/europarl-tiny.de-en.en'
-# corpus2_file = '../data/training-parallel/tiny/europarl-tiny.de-en.de'
-word2vec_en = '../word2vec/en/enwiki_300.model'
-# word2vec_en = '../word2vec/en/en.bin'
+en_word2vec = '../word2vec/en/enwiki_300.model'
+oov_embedding_files = ['./models/en', './models/de']
+
+if sys.argv[1] in ['-h', '--help']:
+    print("""BiCVM++ version beta
+usage: python3 train.py [[option] [value]]...
+options:
+--data         Which dataset do you want to train on? 
+               valid values: [tiny, 1K, 17K, 170K, full], default: tiny
+--act          activation utilized in Pipeline
+               valid values: [tanh, ptf, penalized tanh]. default: penalized tanh
+--noise        The number of noisy samples. default: 25
+--bid          Use bidirectional LSTM? [T/F]. default: False
+--model        The name of model you want to save as. default value depends on what dataset you use.
+--gpuID        The No. of the GPU you want to use. default: No.1
+--mode         Do you want to use MemoryFriendlyLoader or CorpusLoader? 
+               valid values: [MemoryFriendly/Effective], default: MemoryFriendly
+-h, --help     get help.""")
+    exit(0)
+
+for strOption, strArgument in getopt.getopt(sys.argv[1:], '', [strParameter[2:] + '=' for strParameter in sys.argv[1::2]])[0]:
+    if strOption == '--act':                                    # activation
+        if strArgument in ['tanh']:
+            ACTIVATION = 'tanh'
+        elif strArgument in ['penalized_tanh', 'ptf']:
+            ACTIVATION = 'penalized tanh'
+    if strOption == '--data':
+        Dataset = strArgument
+        corpus1_file = '../data/training-parallel/standard/europarl-%s.de-en.en' % strArgument
+        corpus2_file = '../data/training-parallel/standard/europarl-%s.de-en.de' % strArgument
+    elif strOption == '--bid':
+        if strArgument in ['True', 'TRUE', 'true', 'T']:
+            BIDIRECTION = True
+        elif strArgument in ['False', 'FALSE', 'false', 'F']:
+            BIDIRECTION = False
+    elif strOption == '--model':
+        model_name = strArgument
+    elif strOption == '--gpuID':                                # gpu id
+        gpuID = int(strArgument)
+        torch.cuda.set_device(gpuID)
+    elif strOption == '--mode':
+        MODE = strArgument
 
 # --------------------------------------------------------------
 # Hyper Parameters
@@ -27,36 +75,19 @@ WEIGHT_DECAY = 1e-4
 use_checkpoint = False
 checkpoint_path = './checkpoints/checkpoint_0epoch.ckpt'
 Training_pic_path = 'Training_result.jpg'
-model_name = 'MultiCVM_170K_random'
+
+if model_name == '':
+    model_name = 'BiCVMpp_' + Dataset
+
 model_information_txt = model_name + '_info.txt'
 OOV_strategy = 'random'
 
-Dataset = CorpusLoader(corpus0=corpus1_file, corpus1=corpus2_file,
-                               num_of_noise=30, word2vec0=word2vec_en, OOV_strategy=OOV_strategy)      # 如果内存允许
-# Dataset = MemoryFriendlyLoader(corpus0=corpus1_file, corpus1=corpus2_file,
-#                               num_of_noise=5, word2vec0=word2vec_en, OOV_strategy=OOV_strategy)
+Dataset = CorpusLoader(corpus0=corpus1_file, corpus1=corpus2_file, mode=MODE,
+                               num_of_noise=NOISE, word2vec0=en_word2vec, OOV_strategy=OOV_strategy)      # 如果内存允许
 train_loader = torch.utils.data.DataLoader(dataset=Dataset, batch_size=BATCH_SIZE, shuffle=True)
 sample_size = Dataset.__len__()
 # --------------------------------------------------------------
 # some functions
-def show_time(now):
-    s = str(now.year) + '/' + str(now.month) + '/' + str(now.day) + ' ' \
-        + '%02d' % now.hour + ':' + '%02d' % now.minute + ':' + '%02d' % now.second
-    return s
-
-
-def delta_time(datetime1, datetime2):
-    if datetime1 > datetime2:
-        datetime1, datetime2 = datetime2, datetime1
-    second = 0
-    # second += (datetime2.year - datetime1.year) * 365 * 24 * 3600
-    # second += (datetime2.month - datetime1.month) * 30 * 24 * 3600
-    second += (datetime2.day - datetime1.day) * 24 * 3600
-    second += (datetime2.hour - datetime1.hour) * 3600
-    second += (datetime2.minute - datetime1.minute) * 60
-    second += (datetime2.second - datetime1.second)
-    return second
-
 def save_checkpoint(net, optimizer, epoch, losses, savepath):
     save_json = {
         'net_state_dict': net.state_dict(),
@@ -78,11 +109,10 @@ def load_checkpoint(net, optimizer, checkpoint_path):
     return net, optimizer, start_epoch, losses
 
 # --------------------------------------------------------------
-net = MultiCVM()
+net = MultiCVM(GPU_ID=gpuID, activation=ACTIVATION)
 net.cuda()
 
 optimizer = torch.optim.Adam(net.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
-# loss_func = torch.nn.MSELoss()
 loss_func = MyLoss()
 
 # Training
@@ -141,6 +171,8 @@ for epoch in range(EPOCH):
         print('Saved.\n')
         check_point = losses / (step + 1)
 
+net.cpu()
+Dataset.save_oov_embedding(oov_embedding_files)
 plt.plot(plotx, ploty)
 plt.savefig(Training_pic_path)
 
