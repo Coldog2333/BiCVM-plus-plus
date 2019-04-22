@@ -145,7 +145,8 @@ class MultiCVM(torch.nn.Module):
 
 # Standard Pipeline for Sentiment Analysis
 class SAnet(torch.nn.Module):
-    def __init__(self, MultiCVM_model='', load_pretrain=True, GPU_ID=0, activation='penalized tanh', freeze_MultiCVM=False, bidirection=False):
+    def __init__(self, MultiCVM_model='', load_pretrain=True, GPU_ID=0, activation='penalized tanh',
+                 freeze_MultiCVM=False, bidirection=False):
         super(SAnet, self).__init__()
 
         self.BiCVM = MultiCVM(mode='eval1', GPU_ID=GPU_ID, activation=activation, bidirection=bidirection)
@@ -181,6 +182,7 @@ class Net4SA(torch.nn.Module):
         super(Net4SA, self).__init__()
         self.MLP1 = torch.nn.Linear(in_features=300, out_features=300)
         self.MLP2 = torch.nn.Linear(in_features=300, out_features=2)
+
         if activation == 'tanh':
             self.ptf = torch.tanh
         elif activation == 'penalized tanh':
@@ -188,11 +190,51 @@ class Net4SA(torch.nn.Module):
         else:
             raise NameError('Unknown parameters [-activation]')
 
+
     def forward(self, sentence):
         out = sentence[:, 0, :]
         for i in range(1, sentence.size(1)):
             out += sentence[:, i, :]
         out = out.view(out.size(0), 1, out.size(1))
+
+        mlp_out1 = self.MLP1(out)
+        mlp_out = self.ptf(mlp_out1)
+        mlp_out2 = self.MLP2(mlp_out)
+        label = torch.softmax(mlp_out2, -1)
+        return label
+
+
+class ExtraFeature(torch.nn.Module):
+    def __init__(self, activation='penalized tanh', load_pretrain=False, GPU_ID=0, bidirection=False):
+        super(ExtraFeature, self).__init__()
+        self.bicvm_exist = load_pretrain
+        if load_pretrain == False:
+            self.MLP1 = torch.nn.Linear(in_features=300, out_features=300)
+            self.MLP2 = torch.nn.Linear(in_features=300, out_features=2)
+        else:
+            self.MLP1 = torch.nn.Linear(in_features=300 + 512, out_features=300)
+            self.MLP2 = torch.nn.Linear(in_features=300, out_features=2)
+            self.BiCVM = MultiCVM(mode='eval1', GPU_ID=GPU_ID, activation=activation, bidirection=bidirection)
+
+        if activation == 'tanh':
+            self.ptf = torch.tanh
+        elif activation == 'penalized tanh':
+            self.ptf = Penalized_tanh()
+        else:
+            raise NameError('Unknown parameters [-activation]')
+
+
+    def forward(self, sentence):
+        out = sentence[:, 0, :]
+        for i in range(1, sentence.size(1)):
+            out += sentence[:, i, :]
+        out = out.view(out.size(0), 1, out.size(1))
+
+        if self.bicvm_exist == True:
+            bicvm = self.BiCVM(sentence, 0, 0)
+            print(bicvm.shape, out.shape)
+            out = torch.cat((out, bicvm), dim=-1)
+
         mlp_out1 = self.MLP1(out)
         mlp_out = self.ptf(mlp_out1)
         mlp_out2 = self.MLP2(mlp_out)
