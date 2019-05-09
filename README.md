@@ -1,6 +1,7 @@
 # BiCVM++
 This repository is for my bachelor thesis *'BiCVM++: To Represent the internal semantics of sentence'*. I implement BiCVM++ with PyTorch here.
 
+
 ![](docs/structure.png)
 
 ## Prerequisites
